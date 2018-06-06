@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.dao.DatabaseConnectivity;
+import com.notification.SendMail;
 
 /**
  * Servlet implementation class LoginCheck
@@ -65,6 +66,15 @@ public class Login extends HttpServlet {
                 //response.sendRedirect("/home.jsp");
                 //request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
                 request.getRequestDispatcher("/WEB-INF/views/home.jsp").forward(request, response);
+                
+                SendMail mail = com.notification.SendMailFactory.getMailInstance();
+				try{
+					String message="Hi "+username+", You successfully login!";
+				mail.send("vikky.softengi@gmail.com", "Login Success!", message);
+				
+				}catch(Exception ex){
+					ex.printStackTrace();
+				}
                
             }else{
             	System.out.println("Inside Faild!");
