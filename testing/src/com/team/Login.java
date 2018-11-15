@@ -68,14 +68,11 @@ public class Login extends HttpServlet {
                 request.getRequestDispatcher("/WEB-INF/views/home.jsp").forward(request, response);
                 
                 SendMail mail = com.notification.SendMailFactory.getMailInstance();
-				try{
+				
 					String message="Hi "+username+", You successfully login!";
 				mail.send("vikky.softengi@gmail.com", "Login Success!", message);
 				
-				}catch(Exception ex){
-					ex.printStackTrace();
-				}
-               
+				           
             }else{
             	System.out.println("Inside Faild!");
                 //pw.println("Login Failed...!");
@@ -90,7 +87,8 @@ public class Login extends HttpServlet {
             ps.setString(2,password);  
             ps.setString(3,email);  
             ps.setString(4,country);                
-            int status=ps.executeUpdate();  */
+            int status=ps.executeUpdate(); 
+             */
               
             con.close();  
         }catch(Exception ex){
